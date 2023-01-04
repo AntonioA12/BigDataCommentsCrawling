@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Chart">
+	<!-- 버블차트 -->
+	<select id="get10SCBubble" resultType="bubbleChartVO">
+		
+		<![CDATA[select cmc , cnt from comments where age_range = 10 and rownum <= 10 order by cnt desc]]>
+
+	</select>
+	
+	<select id="get20SCBubble" resultType="bubbleChartVO">
+		
+		<![CDATA[select cmc , cnt from comments where age_range = 20 and rownum <= 10 order by cnt desc]]>
+
+	</select>
+	
+	<select id="get30SCBubble" resultType="bubbleChartVO">
+		
+		<![CDATA[select cmc , cnt from comments where age_range = 30 and rownum <= 10 order by cnt desc]]>
+
+	</select>
+	
+	<select id="get40SCBubble" resultType="bubbleChartVO">
+		
+		<![CDATA[select cmc , cnt from comments where age_range = 40 and rownum <= 10 order by cnt desc]]>
+
+	</select>
+	
+	
+	<select id="get50SCBubble" resultType="bubbleChartVO">
+		
+		<![CDATA[select cmc , cnt from comments where age_range = 50 and rownum <= 10 order by cnt desc]]>
+
+	</select>
+	<!-- 버블차트 -->
+
+
+
+
+
+
+
+
+	<!--  막대차트 -->
+	<select id="get10SCHard" resultType="hardChartVO">
+		
+		<![CDATA[select cmc , cnt from comments where age_range = 10 and rownum <= 10 order by cnt desc]]>
+
+	</select>
+	
+	<select id="get20SCHard" resultType="hardChartVO">
+		
+		<![CDATA[select cmc , cnt from comments where age_range = 20 and rownum <= 10 order by cnt desc]]>
+
+	</select>
+	
+	<select id="get30SCHard" resultType="hardChartVO">
+		
+		<![CDATA[select cmc , cnt from comments where age_range = 30 and rownum <= 10 order by cnt desc]]>
+
+	</select>
+	
+	<select id="get40SCHard" resultType="hardChartVO">
+		
+		<![CDATA[select cmc , cnt from comments where age_range = 40 and rownum <= 10 order by cnt desc]]>
+
+	</select>
+	
+	
+	<select id="get50SCHard" resultType="hardChartVO">
+		
+		<![CDATA[select cmc , cnt from comments where age_range = 50 and rownum <= 10 order by cnt desc]]>
+
+	</select>
+	<!--  막대차트 -->
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 클라우드 차트 -->
+	<select id="getTop40" resultType="cloudChartVO">
+		SELECT 	cmc
+		FROM(	SELECT * FROM COMMENTS WHERE NOT cmc IN ('다','ㅋㅋㅋ','노래가','제가','the','ㅜㅜ', '근데','그','하는','진짜','너무','많이','그냥','ㅋㅋ','정말','좋은','내가','하고','있는','저도','지금','다시')  ORDER BY CNT DESC) 
+		WHERE 	ROWNUM BETWEEN 1 AND 40
+	</select>
+	
+	<select id="getTop10" resultType="cloudChartVO">
+		SELECT 	cmc
+		FROM(	SELECT * FROM COMMENTS WHERE NOT cmc IN ('다','ㅋㅋㅋ','노래가','제가','the','ㅜㅜ', '근데','그','하는','진짜','너무','많이','그냥','ㅋㅋ','정말','좋은','내가','하고','있는','저도','지금','다시')  ORDER BY CNT DESC) 
+		WHERE 	ROWNUM BETWEEN 1 AND 10
+	</select>
+	
+	<select id="getTop10Cnt" resultType="cloudChartVO">
+		SELECT 	cnt
+		FROM(	SELECT * FROM COMMENTS WHERE NOT cmc IN ('다','ㅋㅋㅋ','노래가','제가','the','ㅜㅜ', '근데','그','하는','진짜','너무','많이','그냥','ㅋㅋ','정말','좋은','내가','하고','있는','저도','지금','다시')  ORDER BY CNT DESC) 
+		WHERE 	ROWNUM BETWEEN 1 AND 10
+	</select>
+	<!-- 클라우드 차트 -->
+	
+</mapper>

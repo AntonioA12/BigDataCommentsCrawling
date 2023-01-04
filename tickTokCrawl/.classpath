@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="lib" path="C:/Users/thddy/OneDrive/바탕 화면/크롤링하기!/selenium-server-4.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/thddy/OneDrive/바탕 화면/크롤링하기!/ojdbc8.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

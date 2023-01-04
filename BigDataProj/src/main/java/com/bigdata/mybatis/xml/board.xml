@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Board">
+	<!-- <select id="getBoardList" parameterType="hashmap" resultType="boardVO">
+		SELECT 	BOARD_NO, USER_NAME, AGE_RANGE, BOARD_TITLE, BOARD_DATE, LIKES
+		FROM(	SELECT	ROWNUM R, B.*
+				FROM	(SELECT * FROM TABLE_BOARD WHERE AGE_RANGE LIKE #{ageRange} ORDER BY BOARD_NO DESC) B)
+		WHERE 	R BETWEEN #{startRow} AND #{endRow}
+	</select> -->
+	<!-- 내코드 -->
+	<select id="getBoardList" parameterType="hashmap" resultType="boardVO">
+		SELECT 	BOARD_NO, USER_NAME, AGE_RANGE, BOARD_TITLE, BOARD_CONTENT, BOARD_DATE, LIKES
+		FROM(	SELECT	ROWNUM R, B.*
+				FROM	(SELECT * FROM TABLE_BOARD WHERE age_range LIKE '${ageRange}%' ORDER BY BOARD_NO DESC) B)
+		WHERE 	R BETWEEN #{startRow} AND #{endRow}
+	</select>
+	<!-- 내코드 -->
+	
+	<select id="getEachAgeBoardCnt" parameterType="hashmap" resultType="_int">
+		SELECT count(*) FROM TABLE_BOARD WHERE age_range LIKE '${ageRange}%' ORDER BY BOARD_NO DESC
+	</select>
+	
+	<select id="getBoardCnt" resultType="_int">
+		SELECT COUNT(BOARD_NO) FROM TABLE_BOARD
+	</select>
+	
+	<insert id="insertBoard" parameterType="boardVO">
+		INSERT INTO TABLE_BOARD
+		(BOARD_NO, USER_NAME, AGE_RANGE, BOARD_TITLE, BOARD_CONTENT, BOARD_DATE, LIKES)
+		VALUES(SEQ_BOARD.NEXTVAL, #{user_name}, #{age_range}, #{board_title}, #{board_content}, SYSDATE, 0)
+	</insert>
+	
+	<select id="getDetail" parameterType="_int" resultType="boardVO">
+		SELECT 	BOARD_NO, USER_NAME, BOARD_TITLE, BOARD_CONTENT, BOARD_DATE, LIKES 
+		FROM 	TABLE_BOARD WHERE BOARD_NO = #{board_no}
+	</select>
+	
+	<update id="updateBoard" parameterType="boardVO">
+		UPDATE TABLE_BOARD
+		SET BOARD_TITLE = #{board_title}, BOARD_CONTENT = #{board_content}
+		WHERE BOARD_NO = #{board_no}
+	</update>
+	
+	<delete id="deletePost">
+		DELETE FROM TABLE_BOARD
+		WHERE BOARD_NO = ${board_no}
+	</delete>
+	
+	<select id="getSeq" resultType="_int">
+		SELECT seq_board.currval FROM
+		dual
+	</select>
+
+</mapper>
